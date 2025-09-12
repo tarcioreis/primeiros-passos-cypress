@@ -18,7 +18,11 @@ describe('template spec', () => {
       lastNameField: '[name="lastName"]',
       driverLicenseField: '[data-v-1f99f73c=""]',
       driverLicenseDateField: '[placeholder="yyyy-dd-mm"]',
-      closeButtonDate: '.--close'
+      closeButtonDate: '.--close',
+      employeeIdField: '.oxd-input',
+      otherIdField: '.oxd-input',
+      nationalityField: '.oxd-select-text-input',
+      saveButton: '[type="submit"]'
   }
 
   it('Login - Success', () => {
@@ -55,9 +59,12 @@ describe('template spec', () => {
     cy.get(changeUserInfoSelectors.firstNameField).clear().type("José");
     cy.get(changeUserInfoSelectors.middleNameField).clear().type("Santos");
     cy.get(changeUserInfoSelectors.lastNameField).clear().type("Silva");
+    cy.get(changeUserInfoSelectors.employeeIdField).eq(4).clear().type("123456789");
+    cy.get(changeUserInfoSelectors.otherIdField).eq(5).clear().type("ABC123");
     cy.get(changeUserInfoSelectors.driverLicenseField).eq(6).clear().type("12345678");
     cy.get(changeUserInfoSelectors.driverLicenseDateField).eq(0).clear().type("2025-10-09");
     cy.get(changeUserInfoSelectors.closeButtonDate).click();
+    cy.get(changeUserInfoSelectors.saveButton).eq(1).click();
   });
 
 });
