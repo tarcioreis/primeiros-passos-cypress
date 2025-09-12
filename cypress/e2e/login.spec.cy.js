@@ -2,6 +2,7 @@ import userData from "../fixtures/userData.json"
 
 describe('template spec', () => {
 
+  // objeto de seletores para login e dashboard
   let selectorsList = {
       userNameField: '[name="username"]',
       passwordField: '[name="password"]',
@@ -9,6 +10,16 @@ describe('template spec', () => {
       topBarTitle: '.oxd-topbar-header-breadcrumb > .oxd-text',
       myInfoLink: '[href="/web/index.php/pim/viewMyDetails"]'
   };
+
+  // objeto de seletores para alterar informações do usuário
+  let changeUserInfoSelectors = {
+      firstNameField: '[name="firstName"]',
+      middleNameField: '[name="middleName"]',
+      lastNameField: '[name="lastName"]',
+      driverLicenseField: '[data-v-1f99f73c=""]',
+      driverLicenseDateField: '[placeholder="yyyy-dd-mm"]',
+      closeButtonDate: '.--close'
+  }
 
   it('Login - Success', () => {
     cy.visit('/auth/login')
@@ -30,13 +41,23 @@ describe('template spec', () => {
   // Novo cenário - Alterar informações do usuário
 
   it.only('User info update - Success', () => {
+
+    // login
     cy.visit('/auth/login');
     cy.get(selectorsList.userNameField).type(userData.userSuccess.userName);
     cy.get(selectorsList.passwordField).type(userData.userSuccess.password);
     cy.get(selectorsList.loginButton).click();
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index');
     cy.get(selectorsList.topBarTitle).contains('Dashboard');
+
+    // My info
     cy.get(selectorsList.myInfoLink).click();
+    cy.get(changeUserInfoSelectors.firstNameField).clear().type("José");
+    cy.get(changeUserInfoSelectors.middleNameField).clear().type("Santos");
+    cy.get(changeUserInfoSelectors.lastNameField).clear().type("Silva");
+    cy.get(changeUserInfoSelectors.driverLicenseField).eq(6).clear().type("12345678");
+    cy.get(changeUserInfoSelectors.driverLicenseDateField).eq(0).clear().type("2025-10-09");
+    cy.get(changeUserInfoSelectors.closeButtonDate).click();
   });
 
 });
