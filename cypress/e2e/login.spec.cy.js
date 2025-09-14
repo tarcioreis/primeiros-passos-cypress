@@ -2,6 +2,7 @@ import userData from "../fixtures/userData.json"
 
 describe('template spec', () => {
 
+  let option = 27;
   // objeto de seletores para login e dashboard
   let selectorsList = {
       userNameField: '[name="username"]',
@@ -21,7 +22,8 @@ describe('template spec', () => {
       closeButtonDate: '.--close',
       employeeIdField: '.oxd-input',
       otherIdField: '.oxd-input',
-      nationalityField: '.oxd-select-text-input',
+      nationalityField: '.oxd-select-text',
+      nationalityOption: `.oxd-select-dropdown > :nth-child(${option})`,
       saveButton: '[type="submit"]'
   }
 
@@ -64,6 +66,8 @@ describe('template spec', () => {
     cy.get(changeUserInfoSelectors.driverLicenseField).eq(6).clear().type("12345678");
     cy.get(changeUserInfoSelectors.driverLicenseDateField).eq(0).clear().type("2025-10-09");
     cy.get(changeUserInfoSelectors.closeButtonDate).click();
+    cy.get(changeUserInfoSelectors.nationalityField).eq(0).click();
+    cy.get(changeUserInfoSelectors.nationalityOption).click();
     cy.get(changeUserInfoSelectors.saveButton).eq(1).click();
     cy.get('body').should('contain', 'Successfully Saved');
     //cy.get('.oxd-toast');
