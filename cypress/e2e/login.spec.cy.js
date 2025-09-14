@@ -65,6 +65,8 @@ describe('template spec', () => {
     cy.get(changeUserInfoSelectors.driverLicenseDateField).eq(0).clear().type("2025-10-09");
     cy.get(changeUserInfoSelectors.closeButtonDate).click();
     cy.get(changeUserInfoSelectors.saveButton).eq(1).click();
+    cy.get('body').should('contain', 'Successfully Saved');
+    //cy.get('.oxd-toast');
   });
 
 });
