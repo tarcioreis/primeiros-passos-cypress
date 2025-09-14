@@ -3,6 +3,8 @@ import userData from "../fixtures/userData.json"
 describe('template spec', () => {
 
   let option = 27;
+  let martialOption = 3;
+
   // objeto de seletores para login e dashboard
   let selectorsList = {
       userNameField: '[name="username"]',
@@ -24,6 +26,8 @@ describe('template spec', () => {
       otherIdField: '.oxd-input',
       nationalityField: '.oxd-select-text',
       nationalityOption: `.oxd-select-dropdown > :nth-child(${option})`,
+      martialStatusField: '.oxd-select-text',
+      martialOption: `.oxd-select-dropdown > :nth-child(${martialOption})`,
       saveButton: '[type="submit"]'
   }
 
@@ -68,6 +72,8 @@ describe('template spec', () => {
     cy.get(changeUserInfoSelectors.closeButtonDate).click();
     cy.get(changeUserInfoSelectors.nationalityField).eq(0).click();
     cy.get(changeUserInfoSelectors.nationalityOption).click();
+    cy.get(changeUserInfoSelectors.martialStatusField).eq(1).click();
+    cy.get(changeUserInfoSelectors.martialOption).click();
     cy.get(changeUserInfoSelectors.saveButton).eq(1).click();
     cy.get('body').should('contain', 'Successfully Saved');
     //cy.get('.oxd-toast');
