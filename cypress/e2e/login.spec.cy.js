@@ -4,6 +4,7 @@ describe('template spec', () => {
 
   let option = 27;
   let martialOption = 3;
+  let bloodType = 3;
 
   // objeto de seletores para login e dashboard
   let selectorsList = {
@@ -20,14 +21,16 @@ describe('template spec', () => {
       middleNameField: '[name="middleName"]',
       lastNameField: '[name="lastName"]',
       driverLicenseField: '[data-v-1f99f73c=""]',
-      driverLicenseDateField: '[placeholder="yyyy-dd-mm"]',
+      genericDateField: '[placeholder="yyyy-dd-mm"]',
       closeButtonDate: '.--close',
       employeeIdField: '.oxd-input',
       otherIdField: '.oxd-input',
-      nationalityField: '.oxd-select-text',
+      genericSelection: '.oxd-select-text',
       nationalityOption: `.oxd-select-dropdown > :nth-child(${option})`,
-      martialStatusField: '.oxd-select-text',
       martialOption: `.oxd-select-dropdown > :nth-child(${martialOption})`,
+      bloodTypeOption: `.oxd-select-dropdown > :nth-child(${bloodType})`,
+      inputTextTest: '[options=""]',
+      genericGenderField: '.oxd-radio-wrapper',
       saveButton: '[type="submit"]'
   }
 
@@ -68,12 +71,17 @@ describe('template spec', () => {
     cy.get(changeUserInfoSelectors.employeeIdField).eq(4).clear().type("123456789");
     cy.get(changeUserInfoSelectors.otherIdField).eq(5).clear().type("ABC123");
     cy.get(changeUserInfoSelectors.driverLicenseField).eq(6).clear().type("12345678");
-    cy.get(changeUserInfoSelectors.driverLicenseDateField).eq(0).clear().type("2025-10-09");
+    cy.get(changeUserInfoSelectors.genericDateField).eq(0).clear().type("2025-10-09");
     cy.get(changeUserInfoSelectors.closeButtonDate).click();
-    cy.get(changeUserInfoSelectors.nationalityField).eq(0).click();
+    cy.get(changeUserInfoSelectors.genericSelection).eq(0).click();
     cy.get(changeUserInfoSelectors.nationalityOption).click();
-    cy.get(changeUserInfoSelectors.martialStatusField).eq(1).click();
+    cy.get(changeUserInfoSelectors.genericSelection).eq(1).click();
     cy.get(changeUserInfoSelectors.martialOption).click();
+    cy.get(changeUserInfoSelectors.genericDateField).eq(1).clear().type('2025-09-14');
+    cy.get(changeUserInfoSelectors.genericGenderField).eq(0).click();
+    cy.get(changeUserInfoSelectors.genericSelection).eq(2).click();
+    cy.get(changeUserInfoSelectors.bloodTypeOption).click();
+    cy.get(changeUserInfoSelectors.inputTextTest).clear().type('Just testing');
     cy.get(changeUserInfoSelectors.saveButton).eq(1).click();
     cy.get('body').should('contain', 'Successfully Saved');
     //cy.get('.oxd-toast');
