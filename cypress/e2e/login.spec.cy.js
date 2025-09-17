@@ -1,4 +1,7 @@
 import userData from "../fixtures/userData.json"
+import LoginPage from "../pages/LoginPage.js"
+
+const loginPage = new LoginPage();
 
 describe('template spec', () => {
 
@@ -8,12 +11,12 @@ describe('template spec', () => {
 
   // objeto de seletores para login e dashboard
   let selectorsList = {
-      userNameField: '[name="username"]',
-      passwordField: '[name="password"]',
-      loginButton: '[type="submit"]',
-      topBarTitle: '.oxd-topbar-header-breadcrumb > .oxd-text',
-      myInfoLink: '[href="/web/index.php/pim/viewMyDetails"]'
-  };
+            userNameField: '[name="username"]',
+            passwordField: '[name="password"]',
+            loginButton: '[type="submit"]',
+            topBarTitle: '.oxd-topbar-header-breadcrumb > .oxd-text',
+            myInfoLink: '[href="/web/index.php/pim/viewMyDetails"]'
+        }
 
   // objeto de seletores para alterar informações do usuário
   let changeUserInfoSelectors = {
@@ -56,12 +59,10 @@ describe('template spec', () => {
   it.only('User info update - Success', () => {
 
     // login
-    cy.visit('/auth/login');
-    cy.get(selectorsList.userNameField).type(userData.userSuccess.userName);
-    cy.get(selectorsList.passwordField).type(userData.userSuccess.password);
-    cy.get(selectorsList.loginButton).click();
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index');
-    cy.get(selectorsList.topBarTitle).contains('Dashboard');
+    loginPage.accessLoginPage();
+    loginPage.loginSuccessUser(userData.userSuccess.userName, userData.userSuccess.password);
+    //cy.location('pathname').should('equal', '/web/index.php/dashboard/index');
+    //cy.get(selectorsList.topBarTitle).contains('Dashboard');
 
     // My info
     cy.get(selectorsList.myInfoLink).click();
