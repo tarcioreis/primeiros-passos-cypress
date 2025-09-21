@@ -1,13 +1,13 @@
 import userData from "../fixtures/userData.json"
 import LoginPage from "../pages/LoginPage.js"
 import ChangeUserInfo from "../pages/ChangeUserInfo.js"
+import LinksPage from "../pages/LinksPage.js"
 
 const loginPage = new LoginPage();
 const changeUserInfo = new ChangeUserInfo();
+const linksPage = new LinksPage();
 
 describe('template spec', () => {
-
- 
 
   // objeto de seletores para login e dashboard
   let selectorsList = {
@@ -42,6 +42,7 @@ describe('template spec', () => {
     // login
     loginPage.accessLoginPage();
     loginPage.loginSuccessUser(userData.userSuccess.userName, userData.userSuccess.password);
+    linksPage.accessMyInfo();
     //cy.location('pathname').should('equal', '/web/index.php/dashboard/index');
     //cy.get(selectorsList.topBarTitle).contains('Dashboard');
 

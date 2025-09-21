@@ -7,7 +7,7 @@ class ChangeUserInfo {
         let bloodType = 3;
 
         const selectors = {
-            myInfoLink: '[href="/web/index.php/pim/viewMyDetails"]',
+            //myInfoLink: '[href="/web/index.php/pim/viewMyDetails"]',
             firstNameField: '[name="firstName"]',
             middleNameField: '[name="middleName"]',
             lastNameField: '[name="lastName"]',
@@ -29,7 +29,7 @@ class ChangeUserInfo {
     }
 
     updateUserInfo() {
-        cy.get(this.userInfoSelectors().myInfoLink).click();
+        //cy.get(this.userInfoSelectors().myInfoLink).click();
         cy.get(this.userInfoSelectors().firstNameField).clear().type("José");
         cy.get(this.userInfoSelectors().middleNameField).clear().type("Santos");
         cy.get(this.userInfoSelectors().lastNameField).clear().type("Silva");

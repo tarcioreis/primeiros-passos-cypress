@@ -6,7 +6,6 @@ class LoginPage {
             passwordField: '[name="password"]',
             loginButton: '[type="submit"]',
             topBarTitle: '.oxd-topbar-header-breadcrumb > .oxd-text',
-            myInfoLink: '[href="/web/index.php/pim/viewMyDetails"]'
         }
 
         return selectorsList;
