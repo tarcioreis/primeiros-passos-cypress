@@ -2,10 +2,11 @@ import userData from "../fixtures/userData.json"
 import LoginPage from "../pages/LoginPage.js"
 import ChangeUserInfo from "../pages/ChangeUserInfo.js"
 import LinksPage from "../pages/LinksPage.js"
+import MenuPage from "../pages/MenuPage.js"
 
 const loginPage = new LoginPage();
 const changeUserInfo = new ChangeUserInfo();
-const linksPage = new LinksPage();
+const menuPage = new MenuPage();
 
 describe('template spec', () => {
 
@@ -42,7 +43,7 @@ describe('template spec', () => {
     // login
     loginPage.accessLoginPage();
     loginPage.loginSuccessUser(userData.userSuccess.userName, userData.userSuccess.password);
-    linksPage.accessMyInfo();
+    menuPage.accessMyInfoPage();
     //cy.location('pathname').should('equal', '/web/index.php/dashboard/index');
     //cy.get(selectorsList.topBarTitle).contains('Dashboard');
 
