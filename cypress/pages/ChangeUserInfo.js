@@ -28,28 +28,38 @@ class ChangeUserInfo {
         return selectors;
     }
 
-    updateUserInfo() {
-        //cy.get(this.userInfoSelectors().myInfoLink).click();
-        cy.get(this.userInfoSelectors().firstNameField).clear().type("José");
-        cy.get(this.userInfoSelectors().middleNameField).clear().type("Santos");
-        cy.get(this.userInfoSelectors().lastNameField).clear().type("Silva");
-        cy.get(this.userInfoSelectors().employeeIdField).eq(4).clear().type("123456789");
-        cy.get(this.userInfoSelectors().otherIdField).eq(5).clear().type("ABC123");
-        cy.get(this.userInfoSelectors().driverLicenseField).eq(6).clear().type("12345678");
-        cy.get(this.userInfoSelectors().genericDateField).eq(0).clear().type("2025-10-09");
+    fillFullName(firstName, middleName, lastName) {
+        cy.get(this.userInfoSelectors().firstNameField).clear().type(firstName);
+        cy.get(this.userInfoSelectors().middleNameField).clear().type(middleName);
+        cy.get(this.userInfoSelectors().lastNameField).clear().type(lastName);
+    }
+
+    fillEmployeeDetails(employeeId, otherId, driverLicenseNumber, driverLicenseExpiry) {
+        cy.get(this.userInfoSelectors().employeeIdField).eq(4).clear().type(employeeId);
+        cy.get(this.userInfoSelectors().otherIdField).eq(5).clear().type(otherId);
+        cy.get(this.userInfoSelectors().driverLicenseField).eq(6).clear().type(driverLicenseNumber);
+        cy.get(this.userInfoSelectors().genericDateField).eq(0).clear().type(driverLicenseExpiry);
         cy.get(this.userInfoSelectors().closeButtonDate).click();
+    }
+
+    fillEmployeeDetailsTwo() {
         cy.get(this.userInfoSelectors().genericSelection).eq(0).click();
         cy.get(this.userInfoSelectors().nationalityOption).click();
         cy.get(this.userInfoSelectors().genericSelection).eq(1).click();
         cy.get(this.userInfoSelectors().martialOption).click();
         cy.get(this.userInfoSelectors().genericDateField).eq(1).clear().type('2025-09-14');
         cy.get(this.userInfoSelectors().genericGenderField).eq(0).click();
+    }
+
+    fillEmployeeDetailsThree() {
         cy.get(this.userInfoSelectors().genericSelection).eq(2).click();
         cy.get(this.userInfoSelectors().bloodTypeOption).click();
         cy.get(this.userInfoSelectors().inputTextTest).clear().type('Just testing');
+    }
+
+    saveButton() {
         cy.get(this.userInfoSelectors().saveButton).eq(1).click();
         cy.get('body').should('contain', 'Successfully Saved');
-        //cy.get('.oxd-toast');
     }
 
 }

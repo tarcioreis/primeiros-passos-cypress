@@ -1,7 +1,6 @@
 import userData from "../fixtures/userData.json"
 import LoginPage from "../pages/LoginPage.js"
 import ChangeUserInfo from "../pages/ChangeUserInfo.js"
-import LinksPage from "../pages/LinksPage.js"
 import MenuPage from "../pages/MenuPage.js"
 
 const loginPage = new LoginPage();
@@ -48,7 +47,11 @@ describe('template spec', () => {
     //cy.get(selectorsList.topBarTitle).contains('Dashboard');
 
     // update user
-    changeUserInfo.updateUserInfo();
+    changeUserInfo.fillFullName("José", "Silva", "Santos");
+    changeUserInfo.fillEmployeeDetails("123456789", "ABC123", "987-548", "2025-15-07");
+    changeUserInfo.fillEmployeeDetailsTwo();
+    changeUserInfo.fillEmployeeDetailsThree();
+    changeUserInfo.saveButton();
   });
 
 });
