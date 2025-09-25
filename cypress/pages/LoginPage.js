@@ -6,6 +6,8 @@ class LoginPage {
             passwordField: '[name="password"]',
             loginButton: '[type="submit"]',
             topBarTitle: '.oxd-topbar-header-breadcrumb > .oxd-text',
+            location: '/web/index.php/dashboard/index',
+            invalidCredentialAlert: '.oxd-alert'
         }
 
         return selectorsList;
@@ -15,10 +17,19 @@ class LoginPage {
         cy.visit('/auth/login');
     }
 
-    loginSuccessUser(userName, password) {
+    loginWithUser(userName, password) {
         cy.get(this.selectorsLogin().userNameField).type(userName);
         cy.get(this.selectorsLogin().passwordField).type(password);
         cy.get(this.selectorsLogin().loginButton).click();
+    }
+
+    checkInvalidCredentialMessage() {
+        cy.get(this.selectorsLogin().invalidCredentialAlert);
+    }
+
+    checkDashboardTitle() {
+        cy.location('pathname').should('equal', this.selectorsLogin().location);
+        cy.get(this.selectorsLogin().topBarTitle).contains('Dashboard');
     }
 }
 
